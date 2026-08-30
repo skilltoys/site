@@ -2,6 +2,11 @@
   // Cloudflare Workers config — static site served entirely from assets, no Worker code.
   "name": "site",
   "compatibility_date": "2026-08-30",
+  // custom domains attach on deploy (Workers Builds has the zone permissions)
+  "routes": [
+    { "pattern": "skilltoys.se", "custom_domain": true },
+    { "pattern": "www.skilltoys.se", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./",
     // /guider/foo/ -> guider/foo/index.html, Pages-style clean URLs
