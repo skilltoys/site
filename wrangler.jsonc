@@ -1,0 +1,12 @@
+{
+  // Cloudflare Workers config — static site served entirely from assets, no Worker code.
+  "name": "site",
+  "compatibility_date": "2026-08-30",
+  "assets": {
+    "directory": "./",
+    // /guider/foo/ -> guider/foo/index.html, Pages-style clean URLs
+    "html_handling": "auto-trailing-slash",
+    // serve /404.html with status 404 for unknown paths
+    "not_found_handling": "404-page"
+  }
+}
