@@ -35,6 +35,10 @@ cat > "${DIR}/index.html" <<EOF
   <meta property="og:description" content="TODO: samma som meta description.">
   <meta property="og:url" content="https://skilltoys.se/nyheter/${SLUG}/">
   <meta property="og:locale" content="sv_SE">
+  <meta property="og:image" content="https://skilltoys.se/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

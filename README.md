@@ -33,19 +33,30 @@ python3 -m http.server 8080
 
 Öppna sedan http://localhost:8080 (absoluta sökvägar som `/css/style.css` kräver en server — öppna inte filerna direkt med `file://`).
 
-## Deploy (välj en, alla gratis)
+## Deploy (aktuell setup)
 
-- **Cloudflare Pages** (rekommenderas): koppla git-repot, inga bygginställningar behövs, peka `skilltoys.se` på projektet.
-- **Netlify**: samma sak — drag & drop eller git-koppling.
-- **GitHub Pages**: pusha till GitHub, aktivera Pages, lägg CNAME för domänen.
+Sajten deployas som en **Cloudflare Worker med static assets** (git-kopplad via
+Workers Builds i Cloudflare-kontot "skilltoys"):
+
+- Repo: https://github.com/skilltoys/site → varje push till `main` bygger
+  och deployar automatiskt (`npx wrangler deploy`).
+- Worker: `site` → https://site.skilltoys.workers.dev
+- Konfiguration i `wrangler.jsonc` (clean URLs, 404-hantering);
+  `.assetsignore` håller repo-filer utanför deployen; `_headers` sätter
+  säkerhets- och cache-headers.
+- OBS: `_redirects` för Workers assets tillåter bara relativa URL:er —
+  www→apex-redirecten görs i stället som en **Redirect Rule** i zonen
+  (Rules → Redirect Rules i Cloudflare-dashboarden).
 
 ## Checklista för SEO-effekt (utan detta händer inget)
 
-1. [ ] Registrera **skilltoys.se** och peka domänen på hostingen.
-2. [ ] Verifiera sajten i **Google Search Console** och skicka in `sitemap.xml`.
-3. [ ] Verifiera även i **Bing Webmaster Tools** (billig extratrafik).
-4. [ ] Publicera 1–2 nya inlägg eller guider **per månad** — regelbundenhet slår volym.
-5. [ ] Skaffa några inlänkar: svenska hobbyforum, Facebook-grupper för kendama/yoyo,
+1. [x] Domänen **skilltoys.se** ägd; zon tillagd i Cloudflare (NS-byte hos Loopia pågår).
+2. [ ] Koppla `skilltoys.se` + `www` som custom domains på Workern när zonen är aktiv,
+       och lägg Redirect Rule för www→apex.
+3. [ ] Verifiera sajten i **Google Search Console** och skicka in `sitemap.xml`.
+4. [ ] Verifiera även i **Bing Webmaster Tools** (billig extratrafik).
+5. [ ] Publicera 1–2 nya inlägg eller guider **per månad** — regelbundenhet slår volym.
+6. [ ] Skaffa några inlänkar: svenska hobbyforum, Facebook-grupper för kendama/yoyo,
        länk från eventuella andra egna sajter.
 
 ## Nytt nyhetsinlägg
