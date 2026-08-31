@@ -2,6 +2,8 @@
   // Cloudflare Workers config — static site served entirely from assets, no Worker code.
   "name": "site",
   "compatibility_date": "2026-08-30",
+  // real domain is live — don't serve a duplicate on site.skilltoys.workers.dev
+  "workers_dev": false,
   // custom domains attach on deploy (Workers Builds has the zone permissions)
   "routes": [
     { "pattern": "skilltoys.se", "custom_domain": true },
